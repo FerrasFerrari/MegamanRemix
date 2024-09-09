@@ -10,6 +10,7 @@ public class Control : MonoBehaviour
     bool jump, doublejump,jumpagain; // Flags para controle de pulo e pulo duplo.
     float jumptime, jumptimeside; // Controla a duração dos pulos.
     public ParticleSystem fire; // Sistema de partículas para o efeito de fogo.
+    public float jumpForce = 1;
 
     void Start()
     {
@@ -106,7 +107,7 @@ public class Control : MonoBehaviour
         if (jump)
         {
             jumptime = Mathf.Lerp(jumptime, 0, Time.fixedDeltaTime * 10);
-            rdb.AddForce(Vector2.up * jumptime, ForceMode2D.Impulse);
+            rdb.AddForce(Vector2.up * jumptime * jumpForce, ForceMode2D.Impulse);
             if (rdb.velocity.y < 0)
             {
                 jumpagain = false;

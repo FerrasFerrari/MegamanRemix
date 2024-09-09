@@ -8,6 +8,8 @@ public class MyCamera : MonoBehaviour {
     Rigidbody2D rdb;
     [SerializeField]
     float advanceFactor = 2;
+    [SerializeField]
+    float yOffset = 3;
 	
 	
 	void LateUpdate () {
@@ -18,14 +20,14 @@ public class MyCamera : MonoBehaviour {
                 transform.position = Vector3.Lerp(transform.position,
                     new Vector3(target.transform.position.x +
                     rdb.velocity.x * advanceFactor
-                    , target.transform.position.y
+                    , target.transform.position.y + yOffset
                     , transform.position.z), Time.smoothDeltaTime);
             }
             else
             {
                 transform.position = Vector3.Lerp(transform.position,
                    new Vector3(target.transform.position.x
-                   , target.transform.position.y
+                   , target.transform.position.y + yOffset
                    , transform.position.z), Time.smoothDeltaTime);
 
             }
