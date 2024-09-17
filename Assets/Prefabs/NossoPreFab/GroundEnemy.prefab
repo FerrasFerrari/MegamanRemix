@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6648905210559344964}
   - component: {fileID: -7805567791262266948}
   m_Layer: 0
-  m_Name: OurEnemy
+  m_Name: GroundEnemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -187,4 +187,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca6a9417bb1af44a95e76e73f148090, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vida: 0
+  vida: 3
