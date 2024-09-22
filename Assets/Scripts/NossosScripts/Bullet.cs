@@ -30,7 +30,9 @@ public class Bullet : MonoBehaviour
     }
     void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        bool n = collision.gameObject == gameObject;
+        Debug.Log(collision.gameObject + " / " + n);
+        if (collision.gameObject != gameObject)
         {
             Destroy(gameObject);
         }

@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 public class ShootingEnemyAI : MonoBehaviour
@@ -9,6 +11,7 @@ public class ShootingEnemyAI : MonoBehaviour
     private float timer;
     private GameObject jogador;
     private float distancia;
+    public float bulletForce;
     
     // Start is called before the first frame update
     void Start()
@@ -20,12 +23,12 @@ public class ShootingEnemyAI : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(distancia);
         if (jogador != null)
         {
             distancia = Vector2.Distance(transform.position, jogador.transform.position);
             Vector2 direction = jogador.transform.position - transform.position;
             direction.Normalize();
+            FlipX(direction);
             if (distancia < 10)
             {
                 timer += Time.deltaTime;
@@ -46,6 +49,24 @@ public class ShootingEnemyAI : MonoBehaviour
     }
     void shoot()
     {
+        Bullet bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript.force = bulletForce;
         Instantiate(bullet, bulletPos.position, Quaternion.identity);
+    }
+
+    void FlipX(Vector2 direction){
+        transform.localScale = new Vector3(RoundAwayFromZero(direction.x), transform.localScale.y, 
+        transform.localScale.z);
+
+        bulletPos.position = new Vector3(RoundAwayFromZero(direction.x) * bulletPos.position.x, 
+        bulletPos.position.y, bulletPos.position.z);
+    }
+    float RoundAwayFromZero(float n){
+        float nF = MathF.Round(n, MidpointRounding.AwayFromZero);
+        if(nF != 0){
+            return nF;
+        }else{
+            return -1;
+        }
     }
 }
