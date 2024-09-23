@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Damage
   - Enemy
+  - Ground
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
     locked: 0
   - name: New Layer
     uniqueID: 730976939
+    locked: 0
+  - name: HUD
+    uniqueID: 3158461407
     locked: 0

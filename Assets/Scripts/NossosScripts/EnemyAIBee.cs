@@ -3,20 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAIBee : MonoBehaviour
 {
     public GameObject player;
     private float distancia;
     public float speed;
-    public Animator animator;
-    public float yOffset = 0.4f;
     Rigidbody2D rb;
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.FindWithTag("Player");
         rb = GetComponent<Rigidbody2D>();   
-        animator = GetComponent<Animator>();   
     }
 
     // Update is called once per frame
@@ -28,14 +25,10 @@ public class EnemyAI : MonoBehaviour
             direction.Normalize();
             if(distancia < 4)
             {
-                animator.SetBool("HasXVelocity", true);
-                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position + new Vector3(0, yOffset, 0), speed * Time.deltaTime);
-            }else{
-                animator.SetBool("HasXVelocity", false); 
+                transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             }
         }else{
             rb.velocity = new Vector2(0, rb.velocity.y);
-            
             player = GameObject.FindWithTag("Player");
         }
         
